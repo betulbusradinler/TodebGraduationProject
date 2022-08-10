@@ -1,0 +1,32 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:33876",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "API": { // API .net core un kendi içerisinde getirdiği kestrel sunucusudur.
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "launchUrl": "swagger", // hangi url e gideceği
+      "applicationUrl": "http://localhost:5000", // hangi porttan kalkıcağı
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development" // burası appsettings.Development.json dosyasını baz alır.
+        //Projeyi ayağa kaldırdığımızda appsettingDevelopment dosyasındaki key leri kullanır
+      }
+    }
+  }
+}
