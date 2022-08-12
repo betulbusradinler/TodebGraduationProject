@@ -8,8 +8,10 @@ namespace Business.Configuration.Mapper
     {
         public MapperProfile()
         {
-            CreateMap<CreateUserRequest, User>();
+            CreateMap<CreateUserRegisterRequest, User>();
             CreateMap<UpdateUserRequest, User>();
+            CreateMap<User,SearchUserResponse>();
+
         }
     }
 }

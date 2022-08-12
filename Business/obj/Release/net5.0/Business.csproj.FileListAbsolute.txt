@@ -1,0 +1,5 @@
+C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\T-debBitirmeProje\Business\obj\Release\net5.0\Business.csproj.AssemblyReference.cache
+C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\T-debBitirmeProje\Business\obj\Release\net5.0\Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\T-debBitirmeProje\Business\obj\Release\net5.0\Business.AssemblyInfoInputs.cache
+C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\T-debBitirmeProje\Business\obj\Release\net5.0\Business.AssemblyInfo.cs
+C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\T-debBitirmeProje\Business\obj\Release\net5.0\Business.csproj.CoreCompileInputs.cache

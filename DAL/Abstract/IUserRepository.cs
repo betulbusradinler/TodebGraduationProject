@@ -6,7 +6,9 @@ namespace DAL.Abstract
 {
     public interface IUserRepository : IEFBaseRepository<User>
     {
-        // User ile ilgili veritabanında 4 temel işlemim olabilir. CRUD
-
+        // Interface default access modifier public
+        // Get metodu ile user ı çağırdığımızda user ın userPassword bilgisini vermeyecek ama örneğin biz Login olacağız
+        // Login olacağımız zaman bunu  aşağıdaki metodu kullanarak alabiliriz.
+        User GetUserWithPassword(string email);
     }
 }

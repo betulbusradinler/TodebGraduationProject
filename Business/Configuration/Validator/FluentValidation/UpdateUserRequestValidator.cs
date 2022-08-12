@@ -18,7 +18,7 @@ namespace Business.Configuration.Validator.FluentValidation
             RuleFor(x => x.Surname).NotEmpty();
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.Email).EmailAddress().NotEmpty();
-            RuleFor(x => x.Phone).NotEmpty().WithMessage("Please specify a first name");
+            RuleFor(x => x.Phone).NotEmpty().WithMessage("Lütfen bir Numara girin");
         }
     }
 }

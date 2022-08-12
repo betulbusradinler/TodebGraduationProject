@@ -1,9 +1,7 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
 using DTO.User;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models.Entities;
 
 namespace API.Controllers
 {
@@ -13,39 +11,48 @@ namespace API.Controllers
     {
         // API den BUSSİNESS a ise IUserService i kullanarak gidicez.
         
-        private readonly IUserService _service;
+        private readonly IUserService _userService;
 
         public UserController(IUserService service)
         {
-            _service = service;
+            _userService = service;
+        }
+
+        [HttpPost("Register")]
+        public IActionResult Post(CreateUserRegisterRequest request)
+        {
+            var response = _userService.Register(request);
+            return Ok(response);
+
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
-            var data = _service.GetAll();
+            var data = _userService.GetAll();
             return Ok(data);
         }
 
-        [HttpPost]
-        public IActionResult Post(CreateUserRequest request)
-        {
-            var response = _service.Insert(request);
-            return Ok(response);
-
-        }
         [HttpPut]
         public IActionResult Put(UpdateUserRequest request)
         {
-            var response = _service.Update(request);
+            var response = _userService.Update(request);
             return Ok(response);
         }
 
-        [HttpDelete]
-        public IActionResult Delete(User user)
-        {
-            var response = _service.Delete(user);
-            return Ok(response);
-        }
+        //[HttpGet]
+        //public IActionResult Get()
+        //{
+        //    var data = _userService.GetAll();
+        //    return Ok(data);
+        //}
+
+
+        //[HttpDelete]
+        //public IActionResult Delete(DeleteUserRequest user)
+        //{
+        //    var response = _userService.Delete(user);
+        //    return Ok(response);
+        //}
     }
 }

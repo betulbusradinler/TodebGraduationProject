@@ -7,10 +7,13 @@ namespace Business.Abstract
 {
     public interface IUserService
     {
-        public IEnumerable<User> GetAll();
+        CommandResponse Register(CreateUserRegisterRequest request);
+        IEnumerable<SearchUserResponse> GetAll();
+        CommandResponse Update(UpdateUserRequest request);
 
-        public CommandResponse Insert(CreateUserRequest request);
-        public CommandResponse Update(UpdateUserRequest request);
-        public CommandResponse Delete(User user);
+
+        //public CommandResponse Insert(CreateUserRegisterRequest request);
+        //public CommandResponse Update(UpdateUserRequest request);
+        //public CommandResponse Delete(User user);
     }
 }

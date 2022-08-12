@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Models.Entities;
 
 namespace DTO.User
 {
@@ -16,10 +12,9 @@ namespace DTO.User
         public string Email { get; set; }
         public string VehicleNo { get; set; }
         public string Phone { get; set; }
-        public DateTime Created { get; set; }
-
-        //public UserRole Role { get; set; }
-        //public UserPassword Password { get; set; }   
+        public UserRole Role { get; set; }
+        public string UserPassword { get; set; }
+        public string ConfirmPassword { get; set; }
 
     }
 }

@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.EFBase
 {
@@ -20,7 +18,7 @@ namespace DAL.EFBase
 
         public T Add(T entity)
         {
-            return Context.Entry(entity).Entity; // Burdaki Entry sayesinde hangi tabloyu kullanacağını kendisi çözüyor.
+            return Context.Add(entity).Entity; // Burdaki Entry sayesinde hangi tabloyu kullanacağını kendisi çözüyor.
 
         }
 
@@ -56,6 +54,7 @@ namespace DAL.EFBase
 
         public void SaveChanges()
         {
+            Context.SaveChanges();
         }
 
     }
