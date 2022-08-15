@@ -11,6 +11,7 @@ namespace Business.Configuration.Mapper
             CreateMap<CreateUserRegisterRequest, User>();
             CreateMap<UpdateUserRequest, User>();
             CreateMap<User,SearchUserResponse>();
+            CreateMap<User, DeleteUserRequest>();
 
         }
     }

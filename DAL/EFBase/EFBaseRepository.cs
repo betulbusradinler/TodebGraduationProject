@@ -27,9 +27,11 @@ namespace DAL.EFBase
             Context.Update(entity);
             return entity;
         }
-        public void Delete(T entity)
+        public bool Delete(T entity)
         {
-            Context.Remove(entity); 
+            Context.Remove(entity);
+            return true;
+
         }
 
         public T Get(Expression<Func<T, bool>> expression)  //Burada bir koşulum yok ve 1 tane sonuc bekliyorum

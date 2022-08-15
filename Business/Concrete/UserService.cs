@@ -23,6 +23,30 @@ namespace Business.Concrete
             _mapper = mapper;
         }
 
+        public CommandResponse Delete(DeleteUserRequest request)
+        {
+            var validator = new DeleteUserRequestValidator();
+            validator.Validate(request).ThrowIfException();
+
+          //  var user = _mapper.Map<User>(request);
+            bool isDeleted = _userRepository.Delete(request);
+            if (isDeleted)
+            {
+                return new CommandResponse()  // response çıktı
+                {
+                    Message = "Kullanıcı silindi",
+                    Status = true
+                };
+            }
+
+            return new CommandResponse()  // response çıktı
+            {
+                Message = "Böyle bir kullanıcı yok",
+                Status = true
+            };
+        }
+
+
         // Tüm kullanıcılar listelendi
 
         public IEnumerable<SearchUserResponse> GetAll()
@@ -41,9 +65,6 @@ namespace Business.Concrete
 
             var validator = new CreateUserRequestValidator();
             validator.Validate(request).ThrowIfException();
-
-            //var entity = _mapper.Map<User>(request);
-            //_userRepository.Add(entity);
 
             byte[] passwordHash, passwordSalt;  // Şifre için hash ve salt oluşturuldu
             HashHelper.CreatePasswordHash(request.UserPassword, out passwordHash, out passwordSalt);
@@ -65,39 +86,6 @@ namespace Business.Concrete
             };
 
         }
-
-        //    private IMapper _mapper;
-        //    public UserService(IUserRepository repository, IMapper mapper)
-        //    {
-        //        _repository = repository;
-        //        _mapper = mapper;
-        //    }
-        //    public CommandResponse Insert(CreateUserRegisterRequest request)
-        //    {
-        //        Requestte gelen bilgilerin validation işlemleri yapılır
-        //        var validator = new CreateUserRequestValidator();
-        //        validator.Validate(request).ThrowIfException();
-
-        //        var entity = _mapper.Map<User>(request);
-        //        _repository.Add(entity);
-
-        //        return new CommandResponse
-        //        {
-        //            Status = true,
-        //            Message = $"Müşteri eklendi. Id={request.Name}"
-        //        };
-        //    }
-
-        //    public CommandResponse Delete(User user)
-        //    {
-
-        //        _repository.Delete(user);
-        //        return new CommandResponse
-        //        {
-        //            Status = true,
-        //            Message = $"Müşteri eklendi. Id={user.Id}"
-        //        };
-        //    }
 
         //    public IEnumerable<User> GetAll()
         //    {
@@ -129,8 +117,6 @@ namespace Business.Concrete
                 Message = $"Müşteri güncellendi. Name={request.Name}"
             };
         }
-
-        //public CommandResponse Delete(Dele)
 
     }
 }

@@ -40,6 +40,14 @@ namespace API.Controllers
             return Ok(response);
         }
 
+
+        [HttpDelete]
+        public IActionResult Delete(DeleteUserRequest request)
+        {
+            var response = _userService.Delete(request);
+            return Ok(response);
+        }
+
         //[HttpGet]
         //public IActionResult Get()
         //{
@@ -47,12 +55,5 @@ namespace API.Controllers
         //    return Ok(data);
         //}
 
-
-        //[HttpDelete]
-        //public IActionResult Delete(DeleteUserRequest user)
-        //{
-        //    var response = _userService.Delete(user);
-        //    return Ok(response);
-        //}
     }
 }

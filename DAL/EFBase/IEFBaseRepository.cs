@@ -13,7 +13,7 @@ namespace DAL.EFBase
         T Add(T entity);
         T Update(T entity);
         IEnumerable<T> GetAll(Expression<Func<T,bool>> expression = null);  // GetAll() da koşullu sorgula yazabilmemiz için Linq ların expressionlarından yararlanıyoruz.
-        void Delete(T entity);
+        bool Delete(T entity);
         T Get(Expression<Func<T,bool>> expression);
         void SaveChanges();
 
