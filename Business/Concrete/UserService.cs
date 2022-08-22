@@ -25,30 +25,30 @@ namespace Business.Concrete
 
         public CommandResponse Delete(DeleteUserRequest request)
         {
-            var validator = new DeleteUserRequestValidator();
-            validator.Validate(request).ThrowIfException();
-
-          //  var user = _mapper.Map<User>(request);
-            bool isDeleted = _userRepository.Delete(request);
-            if (isDeleted)
+            var data = _userRepository.Get(x => x.Id == request.Id); // Silinmek istenen kullanıcı kontrolünü yaptım.
+            if(data == null) //Gelen data boş ise böyle bir kullanıcı yok
             {
-                return new CommandResponse()  // response çıktı
+                return new CommandResponse() 
                 {
-                    Message = "Kullanıcı silindi",
-                    Status = true
+                    Message = "Böyle bir kullanıcı bulunamadı",
+                    Status = false
                 };
             }
+            // Değilse veri tabanından silme işlemleri
+            var mappedEntity = _mapper.Map(request,data); // 2 kere entity newlememek için zaten elimde olan data entitysine mapledim
+            _userRepository.Delete(mappedEntity);
+            _userRepository.SaveChanges();
 
-            return new CommandResponse()  // response çıktı
+            return new CommandResponse() 
             {
-                Message = "Böyle bir kullanıcı yok",
+                Message = "Kullanıcı silindi",
                 Status = true
             };
+
+
         }
 
-
         // Tüm kullanıcılar listelendi
-
         public IEnumerable<SearchUserResponse> GetAll()
         {
             var data = _userRepository.GetAll();
@@ -60,9 +60,7 @@ namespace Business.Concrete
         // Kullanıcı kaydı yapıldı 
         public CommandResponse Register(CreateUserRegisterRequest request)
         {
-            // validasyonlar yazıldı
             //Requestte gelen bilgilerin validation işlemleri yapılır
-
             var validator = new CreateUserRequestValidator();
             validator.Validate(request).ThrowIfException();
 
@@ -87,12 +85,6 @@ namespace Business.Concrete
 
         }
 
-        //    public IEnumerable<User> GetAll()
-        //    {
-        //        User bilgilerini repository içerisinden çağırmış olduğum GetAll() metodu ile alıyordum
-        //        return _repository.GetAll();
-        //    }
-
         // Kullanıcı güncellendi
         public CommandResponse Update(UpdateUserRequest request)
         {
@@ -108,7 +100,7 @@ namespace Business.Concrete
                     Message = "Böyle bir kullanıcı bulunamadı"
                 };
             }
-            var mappedEntity = _mapper.Map<User>(request);
+            var mappedEntity = _mapper.Map(request,entity);
             _userRepository.Update(mappedEntity);
 
             return new CommandResponse
