@@ -12,9 +12,5 @@ namespace Business.Abstract
         CommandResponse Update(UpdateUserRequest request);
         CommandResponse Delete(DeleteUserRequest request);
 
-
-        //public CommandResponse Insert(CreateUserRegisterRequest request);
-        //public CommandResponse Update(UpdateUserRequest request);
-        //public CommandResponse Delete(User user);
     }
 }

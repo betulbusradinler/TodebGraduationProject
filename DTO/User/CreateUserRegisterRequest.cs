@@ -15,6 +15,7 @@ namespace DTO.User
         public string Phone { get; set; }
         public DateTime Created { get; set; }
         public UserRole Role { get; set; }
+        public int Flat { get; set; }
         public string UserPassword { get; set; }
         public string ConfirmPassword { get; set; }
     }

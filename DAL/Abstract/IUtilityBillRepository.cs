@@ -1,14 +1,12 @@
-﻿using Models.Entities;
-using System.Collections.Generic;
+﻿using DAL.EFBase;
+using Models.Entities;
 
 namespace DAL.Abstract
 {
-    public interface IUtilityBillRepository
+    public interface IUtilityBillRepository : IEFBaseRepository<UtilityBill>
     {
-        public IEnumerable<UtilityBill> GetAll();
-
-        public void Insert(UtilityBill utilityBill);
-        public void Update(UtilityBill utilityBill);
-        public void Delete(UtilityBill utilityBill);
+        // Benim burada yapmak istediğim şey  yani fatura tablosu kayıt edilirken
+        // böyle bir daire var mı kontrol etmek
+        // onu da daireno üzerinden kontrol etmem gerek
     }
 }

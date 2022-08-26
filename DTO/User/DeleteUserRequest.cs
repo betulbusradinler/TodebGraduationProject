@@ -10,6 +10,8 @@ namespace DTO.User
     public class DeleteUserRequest
     {
         public int Id { get; set; }
-    
+        //wsspublic int UserId { get; set; }
+        //public string UserPassword { get; set; }
+
     }
 }

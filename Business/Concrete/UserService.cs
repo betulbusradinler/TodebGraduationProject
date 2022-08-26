@@ -3,7 +3,7 @@ using Business.Abstract;
 using Business.Configuration.Auth;
 using Business.Configuration.Extensions;
 using Business.Configuration.Response;
-using Business.Configuration.Validator.FluentValidation;
+using Business.Configuration.Validator.FluentValidation.UserValidation;
 using DAL.Abstract;
 using DTO.User;
 using Models.Entities;
@@ -23,6 +23,7 @@ namespace Business.Concrete
             _mapper = mapper;
         }
 
+        // İstenen kullanıcı silindi ama bunu ancak yönetici yapabilir
         public CommandResponse Delete(DeleteUserRequest request)
         {
             var data = _userRepository.Get(x => x.Id == request.Id); // Silinmek istenen kullanıcı kontrolünü yaptım.
@@ -35,8 +36,7 @@ namespace Business.Concrete
                 };
             }
             // Değilse veri tabanından silme işlemleri
-            var mappedEntity = _mapper.Map(request,data); // 2 kere entity newlememek için zaten elimde olan data entitysine mapledim
-            _userRepository.Delete(mappedEntity);
+            _userRepository.Delete(data);
             _userRepository.SaveChanges();
 
             return new CommandResponse() 
@@ -81,6 +81,7 @@ namespace Business.Concrete
             {
                 Message = "Kullanıcı başarılı şekilde kaydedildi",
                 Status = true
+
             };
 
         }
@@ -102,6 +103,7 @@ namespace Business.Concrete
             }
             var mappedEntity = _mapper.Map(request,entity);
             _userRepository.Update(mappedEntity);
+            _userRepository.SaveChanges();
 
             return new CommandResponse
             {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fmq5KJh0BFMIVPbnSRk8j2q9zm1GBNXOhkUy9HYliXJdO1VAcu8Hi1C80sJbJUdrcw47b9Vk6zKgWaur2jMiOg==",
+  "dgSpecHash": "eEu8N/7wO0nAB6wXEYKvLJV1rWic0PefYcLJ9DYJYuc7hiRZbie4NLCL0cvTEdxHdo3RWqbBeB/LteDopGJugA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\DAL\\DAL.csproj",
+  "projectFilePath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dinle\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\dinle\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

@@ -1,9 +1,5 @@
 ﻿using Models.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DTO.User
 {
@@ -17,7 +13,7 @@ namespace DTO.User
         public string VehicleNo { get; set; }
         public string Phone { get; set; }
         public DateTime Created { get; set; }
-        public Flat Flat { get; set; }
+        //public Flat Flat { get; set; }
         public UserRole Role { get; set; }
     }
 }

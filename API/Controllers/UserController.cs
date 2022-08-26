@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using DTO.User;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -48,12 +47,12 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    var data = _userService.GetAll();
-        //    return Ok(data);
-        //}
+        [HttpPatch]
+        public IActionResult Get()
+        {
+            var data = _userService.GetAll();
+            return Ok(data);
+        }
 
     }
 }

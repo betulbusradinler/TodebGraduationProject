@@ -1,16 +1,15 @@
-﻿using DAL.Abstract;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Models.Entities;
 
 namespace DAL.DbContexts
 {
-    public  class ApartmentMSDBContext:DbContext
-    { 
+    public class ApartmentMSDBContext : DbContext
+    {
         private IConfiguration _configuration;
         public ApartmentMSDBContext(IConfiguration configuration)
         {
-           
+
             _configuration = configuration;
         }
 
@@ -25,6 +24,28 @@ namespace DAL.DbContexts
         {
             var connectionString = _configuration.GetConnectionString("MsComm");
             base.OnConfiguring(optionsBuilder.UseSqlServer(connectionString));
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<User>() 
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
+            builder.Entity<UtilityBillType>()
+             .HasIndex(u => u.Name)
+             .IsUnique();
+
+            builder.Entity<User>()
+            .HasIndex(u => u.LicensePlate)
+            .IsUnique();
+
+            builder.Entity<Flat>()
+            .HasIndex(u => u.No)
+            .IsUnique();
+
+            builder.Entity<UtilityBill>()
+            .HasIndex(u => u.UtilityBillNo)
+            .IsUnique();
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Configuration.Validator.FluentValidation
+namespace Business.Configuration.Validator.FluentValidation.UserValidation
 {
-    public class UpdateUserRequestValidator: AbstractValidator<UpdateUserRequest>
+    public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
     {
         public UpdateUserRequestValidator()
         {

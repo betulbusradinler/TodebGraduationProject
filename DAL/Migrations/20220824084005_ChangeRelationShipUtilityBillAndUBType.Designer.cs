@@ -4,14 +4,16 @@ using DAL.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApartmentMSDBContext))]
-    partial class ApartmentManagementSystemModelSnapshot : ModelSnapshot
+    [Migration("20220824084005_ChangeRelationShipUtilityBillAndUBType")]
+    partial class ChangeRelationShipUtilityBillAndUBType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,11 +35,8 @@ namespace DAL.Migrations
                     b.Property<byte>("FloorNo")
                         .HasColumnType("tinyint");
 
-                    b.Property<int>("HirerOrHostId")
+                    b.Property<int>("No")
                         .HasColumnType("int");
-
-                    b.Property<string>("No")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("State")
                         .HasColumnType("bit");
@@ -46,8 +45,6 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HirerOrHostId");
 
                     b.ToTable("Flats");
                 });
@@ -64,6 +61,9 @@ namespace DAL.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FlatId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -84,6 +84,9 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FlatId")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -128,7 +131,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FlatId")
+                    b.Property<int>("FlatId")
                         .HasColumnType("int");
 
                     b.Property<long>("Price")
@@ -158,15 +161,15 @@ namespace DAL.Migrations
                     b.ToTable("UtilityBillTypes");
                 });
 
-            modelBuilder.Entity("Models.Entities.Flat", b =>
+            modelBuilder.Entity("Models.Entities.User", b =>
                 {
-                    b.HasOne("Models.Entities.User", "HirerOrHost")
-                        .WithMany()
-                        .HasForeignKey("HirerOrHostId")
+                    b.HasOne("Models.Entities.Flat", "Flat")
+                        .WithOne("HirerOrHost")
+                        .HasForeignKey("Models.Entities.User", "FlatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("HirerOrHost");
+                    b.Navigation("Flat");
                 });
 
             modelBuilder.Entity("Models.Entities.UserPassword", b =>
@@ -190,7 +193,9 @@ namespace DAL.Migrations
 
                     b.HasOne("Models.Entities.Flat", "Flat")
                         .WithMany("UtilityBills")
-                        .HasForeignKey("FlatId");
+                        .HasForeignKey("FlatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BillType");
 
@@ -199,6 +204,8 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Models.Entities.Flat", b =>
                 {
+                    b.Navigation("HirerOrHost");
+
                     b.Navigation("UtilityBills");
                 });
 

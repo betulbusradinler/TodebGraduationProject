@@ -27,11 +27,9 @@ namespace DAL.EFBase
             Context.Update(entity);
             return entity;
         }
-        public bool Delete(T entity)
+        public void Delete(T entity)
         {
             Context.Remove(entity);
-            return true;
-
         }
 
         public T Get(Expression<Func<T, bool>> expression)  //Burada bir koşulum yok ve 1 tane sonuc bekliyorum
@@ -56,7 +54,6 @@ namespace DAL.EFBase
 
         public void SaveChanges()
         {
-            Context.SaveChanges();
         }
 
     }

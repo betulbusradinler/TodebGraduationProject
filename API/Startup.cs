@@ -33,12 +33,21 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // KULLANMAK ÝSTEDÝÐÝ DI yý MÝDDLE WARE OLARAKTAN INJECT ET
-            // Ne inject edicem?
             services.AddDbContext<ApartmentMSDBContext>(ServiceLifetime.Transient); // Her Db Context çaðrýldýðýnda bu benim için sistem tarafýndan new lenecek
+            
+            // User DI
             services.AddScoped<IUserRepository, EFUserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            // Flat DI
+            services.AddScoped<IFlatService, FlatService>();
+            services.AddScoped<IFlatRepository,EFFlatRepository>();
+            //UtilityBill
+            services.AddScoped<IUtilityBillService, UtilityBillService>();
+            services.AddScoped<IUtilityBillRepository, EFUtilityBillRepository>();
+            //UtilityBillType
+            services.AddScoped<IUtilityBillTypeService, UtilityBillTypeService>();
+            services.AddScoped<IUtilityBillTypeRepository, EFUtilityBillTypeRepository>();
             //services.AddScoped<IDistributedCache, D>
 
             // Token ayarý

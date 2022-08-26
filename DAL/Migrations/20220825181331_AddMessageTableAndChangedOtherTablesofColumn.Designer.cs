@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApartmentMSDBContext))]
-    [Migration("20220808144949_AddColumnSurnameInUser")]
-    partial class AddColumnSurnameInUser
+    [Migration("20220825181331_AddMessageTableAndChangedOtherTablesofColumn")]
+    partial class AddMessageTableAndChangedOtherTablesofColumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,11 +35,8 @@ namespace DAL.Migrations
                     b.Property<byte>("FloorNo")
                         .HasColumnType("tinyint");
 
-                    b.Property<int>("HirerOrHostId")
+                    b.Property<int>("No")
                         .HasColumnType("int");
-
-                    b.Property<string>("No")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("State")
                         .HasColumnType("bit");
@@ -49,7 +46,8 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HirerOrHostId");
+                    b.HasIndex("No")
+                        .IsUnique();
 
                     b.ToTable("Flats");
                 });
@@ -65,7 +63,13 @@ namespace DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("FlatId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LicensePlate")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -82,10 +86,18 @@ namespace DAL.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VehicleNo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("FlatId")
+                        .IsUnique();
+
+                    b.HasIndex("LicensePlate")
+                        .IsUnique()
+                        .HasFilter("[LicensePlate] IS NOT NULL");
 
                     b.ToTable("Users");
                 });
@@ -130,17 +142,24 @@ namespace DAL.Migrations
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FlatId")
+                    b.Property<int>("FlatId")
                         .HasColumnType("int");
 
                     b.Property<long>("Price")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("UtilityBillNo")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BillNameId");
 
                     b.HasIndex("FlatId");
+
+                    b.HasIndex("UtilityBillNo")
+                        .IsUnique()
+                        .HasFilter("[UtilityBillNo] IS NOT NULL");
 
                     b.ToTable("UtilityBills");
                 });
@@ -153,22 +172,26 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("UtilityBillTypes");
                 });
 
-            modelBuilder.Entity("Models.Entities.Flat", b =>
+            modelBuilder.Entity("Models.Entities.User", b =>
                 {
-                    b.HasOne("Models.Entities.User", "HirerOrHost")
-                        .WithMany()
-                        .HasForeignKey("HirerOrHostId")
+                    b.HasOne("Models.Entities.Flat", "Flat")
+                        .WithOne("HirerOrHost")
+                        .HasForeignKey("Models.Entities.User", "FlatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("HirerOrHost");
+                    b.Navigation("Flat");
                 });
 
             modelBuilder.Entity("Models.Entities.UserPassword", b =>
@@ -192,7 +215,9 @@ namespace DAL.Migrations
 
                     b.HasOne("Models.Entities.Flat", "Flat")
                         .WithMany("UtilityBills")
-                        .HasForeignKey("FlatId");
+                        .HasForeignKey("FlatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BillType");
 
@@ -201,6 +226,8 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Models.Entities.Flat", b =>
                 {
+                    b.Navigation("HirerOrHost");
+
                     b.Navigation("UtilityBills");
                 });
 

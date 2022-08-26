@@ -1,15 +1,14 @@
 ﻿using DTO.User;
 using FluentValidation;
 
-namespace Business.Configuration.Validator.FluentValidation
+namespace Business.Configuration.Validator.FluentValidation.UserValidation
 {
-    public class CreateUserRequestValidator:AbstractValidator<CreateUserRegisterRequest>
+    public class CreateUserRequestValidator : AbstractValidator<CreateUserRegisterRequest>
     {
         public CreateUserRequestValidator()
         {
             // Yeni bir kullanıcı eklenmeden önce yapılması gereken validation işlemleri
 
-            RuleFor(x => x.Email).NotEqual(x => x.Email).WithMessage("Böyle bir kullanıcı mevcut");
             RuleFor(x => x.Surname).NotEmpty();
             RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.Email).EmailAddress().NotEmpty().WithMessage("Lütfen e-mailinizi doğru formatta giriniz");

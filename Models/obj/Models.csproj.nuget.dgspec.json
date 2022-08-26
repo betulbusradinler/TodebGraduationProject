@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\Models\\Models.csproj": {}
+    "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\Models\\Models.csproj": {
+    "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\dinle\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\Models\\obj\\",
+        "outputPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dinle\\AppData\\Roaming\\NuGet\\NuGet.Config",

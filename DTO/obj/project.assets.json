@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\DTO\\DTO.csproj",
+      "projectUniqueName": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\DTO\\DTO.csproj",
       "projectName": "DTO",
-      "projectPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\DTO\\DTO.csproj",
+      "projectPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\DTO\\DTO.csproj",
       "packagesPath": "C:\\Users\\dinle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\DTO\\obj\\",
+      "outputPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\DTO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dinle\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\Models\\Models.csproj"
+            "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\Models.csproj"
             }
           }
         }

@@ -9,21 +9,18 @@ namespace Models.Entities
     {
         [Key]
         public int Id { get; set; }
+        public string UtilityBillNo { get; set; }
         public int BillNameId { get; set; }  // Fatura tipi 
-       // public string No { get; set; }  // Fatura No gerek var mı bilmiyorum ? 
+        public int FlatId { get; set; }
         public long Price { get; set; } // Fatura ücreti 
-        public DateTime CreatedDate { get; set; } // Oluşturulma Tarihi
-        public DateTime ExpiryDate { get; set; }  // Son ödeme Tarihi
+        public DateTime CreatedDate { get; set; }
+        public DateTime ExpiryDate { get; set; }
         
         [ForeignKey("FlatId")]
-        public Flat Flat { get; set; }  // Faturanın ait olduğu daire. Her fatura yeni bir fatura kaydı demek aynı fatura tutarı 2 daireye birden gelemez.
+        public Flat Flat { get; set; }  // Faturanın ait olduğu daire.
 
-        [ForeignKey("BillNameId")]  //Fatura
+        [ForeignKey("BillNameId")]  //Fatura Tipi
         public UtilityBillType BillType { get; set; }
-
-        /*
-         * fATURA TUTARI, KDV BİLGİSİ --> Bu yüzden faturayı singleton olarak kullanamayız. 
-         */
 
     }
 }

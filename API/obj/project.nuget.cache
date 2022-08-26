@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lHV4RS3zoBlM4j8VUnZPG/i+wAPoaOgYTeg9Y8qCSy4/DRblZ9lSSzLIx8tx40Erg2wU9OWKwljsaiOr3I5g0g==",
+  "dgSpecHash": "XzzChiEGDpXL6yB+sW4qBk03SfTXU62SOE9q4ydGcMR1B0V7B892SgImqPYaFAXy6/icUmhOjYXGJ85dduk0xQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dinle\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\dinle\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

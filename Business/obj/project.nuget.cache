@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cz+VjC6LewWnOliqdbvxrPXG6cOr3rKYKAkaQtzbPZipnkEkQFO4U7i6zdVN4jUz5esS91oP3TiS8bddx19HQA==",
+  "dgSpecHash": "0NxbJkZxiFfACltjthgUffnB6AD0ERXErJCnV5IDGv2K1S1T5mgvLQjF532adgxDxVD/8K/ZQyx++ome/47vnw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\T-debBitirmeProje\\Business\\Business.csproj",
+  "projectFilePath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dinle\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\dinle\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
