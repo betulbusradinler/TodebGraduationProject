@@ -54,6 +54,7 @@ namespace DAL.EFBase
 
         public void SaveChanges()
         {
+            Context.SaveChanges();
         }
 
     }

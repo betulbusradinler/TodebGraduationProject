@@ -1,7 +1,4 @@
-﻿using Models.Entities;
-using System.Collections.Generic;
-
-namespace DTO.User
+﻿namespace DTO.Flat
 {
     public class SearchFlatResponse
     {

@@ -17,14 +17,14 @@ namespace Bussines.Concrete
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
-        //private readonly IDistributedCache _distributedCache;
+        private readonly IDistributedCache _distributedCache;
 
         public AuthService(IUserRepository userRepository,
-            IConfiguration configuration/*, IDistributedCache distributedCache*/)
+            IConfiguration configuration, IDistributedCache distributedCache)
         {
             _userRepository = userRepository;
             _configuration = configuration;
-            //_distributedCache = distributedCache;
+            _distributedCache = distributedCache;
         }
 
         public CommandResponse VerifyPassword(string email, string password)
@@ -69,7 +69,7 @@ namespace Bussines.Concrete
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.GivenName, user.Name),
                     new Claim(ClaimTypes.Role,user.Role.ToString()),
-                    new Claim("ForCache",StringHelper.CreateCacheKey(user.Name,user.Id))
+                    new Claim("UserPermissionAddCache",StringHelper.CreateCacheKey(user.Name,user.Id))
                 };
 
                 SecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey));
@@ -86,9 +86,10 @@ namespace Bussines.Concrete
 
                 #region Cache
                 //kullanıcının id ile USR_kullanıcıID key oluşup token kaydedilecek
-                //_distributedCache.SetString($"USR_{user.Id}", token);
+                _distributedCache.SetString($"USR_{user.Id}", token);
 
                 #endregion
+
                 return new AccessToken()
                 {
                     Token = token,

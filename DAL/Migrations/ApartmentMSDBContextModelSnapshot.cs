@@ -19,6 +19,33 @@ namespace DAL.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Models.Entities.Chat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReciverMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Chats");
+                });
+
             modelBuilder.Entity("Models.Entities.Flat", b =>
                 {
                     b.Property<int>("Id")
@@ -124,6 +151,26 @@ namespace DAL.Migrations
                     b.ToTable("UsersPassswords");
                 });
 
+            modelBuilder.Entity("Models.Entities.UserPermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Permission")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPermission");
+                });
+
             modelBuilder.Entity("Models.Entities.UtilityBill", b =>
                 {
                     b.Property<int>("Id")
@@ -203,6 +250,17 @@ namespace DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Models.Entities.UserPermission", b =>
+                {
+                    b.HasOne("Models.Entities.User", "User")
+                        .WithMany("Permissions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Models.Entities.UtilityBill", b =>
                 {
                     b.HasOne("Models.Entities.UtilityBillType", "BillType")
@@ -232,6 +290,8 @@ namespace DAL.Migrations
             modelBuilder.Entity("Models.Entities.User", b =>
                 {
                     b.Navigation("Password");
+
+                    b.Navigation("Permissions");
                 });
 #pragma warning restore 612, 618
         }

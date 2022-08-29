@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using DTO.Chat;
 using DTO.Flat;
 using DTO.User;
 using DTO.UtilityBill;
 using DTO.UtilityBillType;
 using Models.Entities;
+using System.Linq;
 
 namespace Business.Configuration.Mapper
 {
@@ -30,6 +32,22 @@ namespace Business.Configuration.Mapper
             CreateMap<DeleteUtilityBillTypeRequest, UtilityBillType>();
             CreateMap<UpdateUtilityBillTypeRequest, UtilityBillType>();
             CreateMap<UtilityBillType, SearchUtilityBillTypeResponse>();
+
+
+            CreateMap<CreateChatRegisterRequest, Chat>();
+            CreateMap<DeleteChatRequest, Chat>();
+            CreateMap<UpdateChatRequest, Chat>();
+            CreateMap<Chat, SearchChatResponse>();
+
+            CreateMap<CreateUtilityBillRequestForAllFlats, UtilityBill>();
+
+            CreateMap<CreateUserRegisterRequest, User>().ForMember(x => x.Permissions,
+              a => a.MapFrom(c => c.UserPermissions.Select(b =>
+                  new UserPermission()
+                  {
+                      Permission = b
+                  })));
+
         }
     }
 }

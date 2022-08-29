@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Entities
 {
@@ -11,10 +7,10 @@ namespace Models.Entities
     {
         [Key]
         public int Id { get; set; } 
-        public string Subject { get; set; }
-        public string Content { get; set; }
-        public string ReciverMail { get; set; }
-        public string SenderMail { get; set; }
-        public DateTime Created { get; set; }
+        public string Subject { get; set; }     //  Mesajın konusu hakkında bilgi
+        public string Content { get; set; }     //  Mesajın içeriği hakkında bilgi
+        public string ReciverMail { get; set; } //  Alıcı Mail Adres
+        public string SenderMail { get; set; }  //  Gönderici Mail Adres
+        public DateTime Created { get; set; } = DateTime.Now;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Models.Entities;
+using System.Collections.Generic;
 
 namespace DTO.User
 {
@@ -13,8 +14,7 @@ namespace DTO.User
         public string VehicleNo { get; set; }
         public string Phone { get; set; }
         public UserRole Role { get; set; }
-        //public string UserPassword { get; set; }
-        //public string ConfirmPassword { get; set; }
+        public IEnumerable<Permission> UserPermissions { get; set; }
 
     }
 }

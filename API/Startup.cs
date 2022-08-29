@@ -1,10 +1,14 @@
+using API.Configuration.Filters.Logs;
 using Business.Abstract;
 using Business.Concrete;
 using Business.Configuration.Auth;
+using Business.Configuration.Cache;
 using Business.Configuration.Mapper;
+using Bussines.Abstract;
 using Bussines.Concrete;
 using DAL.Abstract;
 using DAL.Concrete.EF;
+using DAL.Concrete.Mongo;
 using DAL.DbContexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -14,6 +18,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
+using StackExchange.Redis;
 using System.Collections.Generic;
 using System.Text;
 
@@ -34,7 +40,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApartmentMSDBContext>(ServiceLifetime.Transient); // Her Db Context çaðrýldýðýnda bu benim için sistem tarafýndan new lenecek
-            
+            var redisConfigInfo = Configuration.GetSection("RedisEndpointInfo").Get<RedisEndpointInfo>();
             // User DI
             services.AddScoped<IUserRepository, EFUserRepository>();
             services.AddScoped<IUserService, UserService>();
@@ -48,7 +54,38 @@ namespace API
             //UtilityBillType
             services.AddScoped<IUtilityBillTypeService, UtilityBillTypeService>();
             services.AddScoped<IUtilityBillTypeRepository, EFUtilityBillTypeRepository>();
-            //services.AddScoped<IDistributedCache, D>
+            //Chat
+            services.AddScoped<IChatRepository, EFChatRepository>();
+            services.AddScoped<IChatService, ChatService>();
+
+            //Tüm dairelere tek seferde fatura atama 
+            services.AddScoped<IChatRepository, EFChatRepository>();
+
+            services.AddScoped<IOneTimeBillingForAllFlatsService, OneTimeBillingForAllFlatsService>();
+            services.AddScoped<IOneTimeBillingForAllFlatsRepository, EFOneTimeBillingForAllFlatsRepository>();
+            //mongoDb
+            services.AddSingleton<MongoClient>(x => new MongoClient("mongodb://localhost:27017"));
+            services.AddScoped<ICrediCartRepository, CreditCardRepository>();
+            services.AddScoped<ICreditCardService, CreditCardService>();
+            services.AddSingleton<MsSqlLogger>();
+
+            services.AddStackExchangeRedisCache(opt =>
+            {
+                opt.ConfigurationOptions = new ConfigurationOptions()
+                {
+                    EndPoints =
+                    {
+                        { redisConfigInfo.EndPoint, redisConfigInfo.Port }
+                    },
+                    Password = redisConfigInfo.Password,
+                    User = redisConfigInfo.UserName
+
+                };
+            });
+            services.AddMemoryCache();
+
+
+            services.AddScoped<ICacheExample, CacheExample>();
 
             // Token ayarý
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOption>();

@@ -15,16 +15,17 @@ namespace DAL.DbContexts
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserPassword> UsersPassswords { get; set; }
-        //public DbSet<UserRole> UserRole { get; set; }
         public DbSet<Flat> Flats { get; set; }
         public DbSet<UtilityBill> UtilityBills { get; set; }
         public DbSet<UtilityBillType> UtilityBillTypes { get; set; }
+        public DbSet<Chat> Chats { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = _configuration.GetConnectionString("MsComm");
             base.OnConfiguring(optionsBuilder.UseSqlServer(connectionString));
         }
+        // Uniq olan alanları ekledim
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>() 

@@ -4,8 +4,10 @@ using Business.Configuration.Auth;
 using Business.Configuration.Extensions;
 using Business.Configuration.Response;
 using Business.Configuration.Validator.FluentValidation.UserValidation;
+using Bussines.Configuration.Helper;
 using DAL.Abstract;
 using DTO.User;
+using Microsoft.Extensions.Caching.Distributed;
 using Models.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +19,13 @@ namespace Business.Concrete
     {
         private readonly IUserRepository _userRepository;
         private IMapper _mapper;
-        public UserService(IUserRepository repository, IMapper mapper)
+        private readonly IDistributedCache _distributedCache;
+
+        public UserService(IUserRepository repository, IMapper mapper, IDistributedCache distributedCache)
         {
             _userRepository = repository;
             _mapper = mapper;
+            _distributedCache = distributedCache;
         }
 
         // İstenen kullanıcı silindi ama bunu ancak yönetici yapabilir
@@ -45,7 +50,6 @@ namespace Business.Concrete
                 Status = true
             };
 
-
         }
 
         // Tüm kullanıcılar listelendi
@@ -64,8 +68,11 @@ namespace Business.Concrete
             var validator = new CreateUserRequestValidator();
             validator.Validate(request).ThrowIfException();
 
+            var userPassword = request.Name + request.Surname; // Kullanıcı ilk oluşturulduğunda otomatik şifre atama
+
+
             byte[] passwordHash, passwordSalt;  // Şifre için hash ve salt oluşturuldu
-            HashHelper.CreatePasswordHash(request.UserPassword, out passwordHash, out passwordSalt);
+            HashHelper.CreatePasswordHash(userPassword, out passwordHash, out passwordSalt);
             var user = _mapper.Map<User>(request);  // Gelen Dto dan bir tane User entity si oluşturduk passwordü boş
 
             user.Password = new UserPassword()  // Password newlendi
@@ -77,11 +84,15 @@ namespace Business.Concrete
             _userRepository.Add(user);     // Kullanıcı eklendi
             _userRepository.SaveChanges(); // Veritabanına gitti
 
+
+            var key = StringHelper.CreateCacheKey(user.Name, user.Id);
+            var cachePermission = System.Text.Json.JsonSerializer.Serialize(request.UserPermissions);
+
+            _distributedCache.SetString(key, cachePermission);
             return new CommandResponse()  // response çıktı
             {
                 Message = "Kullanıcı başarılı şekilde kaydedildi",
-                Status = true
-
+                Status = true,
             };
 
         }

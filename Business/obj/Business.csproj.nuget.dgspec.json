@@ -65,6 +65,10 @@
             "Microsoft.Extensions.Configuration.Binder": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "Serilog.Sinks.MSSqlServer": {
+              "target": "Package",
+              "version": "[5.7.1, )"
             }
           },
           "imports": [
@@ -139,6 +143,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.17.1, )"
+            },
+            "Serilog.Sinks.MSSqlServer": {
+              "target": "Package",
+              "version": "[5.7.1, )"
             }
           },
           "imports": [
@@ -199,6 +211,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Serilog.Sinks.MSSqlServer": {
+              "target": "Package",
+              "version": "[5.7.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -253,6 +271,16 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[2.17.1, )"
+            },
+            "Serilog.Sinks.MSSqlServer": {
+              "target": "Package",
+              "version": "[5.7.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

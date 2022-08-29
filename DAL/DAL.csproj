@@ -11,6 +11,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.7.1" />
   </ItemGroup>
 
   <ItemGroup>

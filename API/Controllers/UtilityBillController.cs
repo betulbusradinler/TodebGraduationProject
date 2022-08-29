@@ -19,24 +19,26 @@ namespace API.Controllers
             var response = _utilityBillService.Register(request);
             return Ok(response);
         }
-        //[HttpDelete]
-        //public IActionResult Delete(DeleteUtilityBillTypeRequest request)
-        //{
-        //    var response = _utilityBillTypeService.Delete(request);
-        //    return Ok(response);
-        //}
-
-        //[HttpPut]
-        //public IActionResult Put(UpdateUtilityBillTypeRequest request)
-        //{
-        //    var response = _utilityBillTypeService.Update(request);
-        //    return Ok(response);
-        //}
+      
         [HttpGet]
         public IActionResult Get()
         {
             var data = _utilityBillService.GetAll();
             return Ok(data);
+        }
+
+        [HttpPut]
+        public IActionResult Put(UpdateUtilityBillRequest request)
+        {
+            var response = _utilityBillService.Update(request);
+            return Ok(response);
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(DeleteUtilityBillRequest request)
+        {
+            var response = _utilityBillService.Delete(request);
+            return Ok(response);
         }
     }
 }

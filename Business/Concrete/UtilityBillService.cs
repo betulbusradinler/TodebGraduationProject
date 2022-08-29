@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Configuration.Extensions;
 using Business.Configuration.Response;
+using Business.Configuration.Validator.FluentValidation.UtilityBillValidation;
 using DAL.Abstract;
 using DTO.UtilityBill;
 using Models.Entities;
@@ -23,6 +25,8 @@ namespace Business.Concrete
 
         public CommandResponse Register(CreateUtilityBillRequest request)
         {
+            var validator = new CreateUtilityBillRequestValidator();
+            validator.Validate(request).ThrowIfException();
             // Böyle bir fatura daha önce kaydedilmiş mi
             var utilityBill1 = _utilityBillRepository.Get(x => x.UtilityBillNo == request.UtilityBillNo);
             // Böyle bir daire var mı varsa bu daireye de bu fatura id sini kayıt etmeliyim
@@ -33,7 +37,7 @@ namespace Business.Concrete
                 string message = null;
                 if (utilityBill1 != null)
                 {
-                    message = "Db de böyle bir fatura bulunmakta";
+                    message = "Fatura daha önceden kayıt edilmiş";
                 }
                 else
                 {
@@ -46,13 +50,11 @@ namespace Business.Concrete
                 };
             }
             var utilityBill = _mapper.Map<UtilityBill>(request);
-            _utilityBillRepository.Add(utilityBill);     // Kullanıcı eklendi
-            _utilityBillRepository.SaveChanges(); // Veritabanına gitti
-            //var flatUtilityBill = _mapper.Map();
-            //_flatRepository.Add(flat);
-            //_flatRepository.SaveChanges();
+            _utilityBillRepository.Add(utilityBill);     
+            _utilityBillRepository.SaveChanges(); 
+          
 
-            return new CommandResponse()  // response çıktı
+            return new CommandResponse()  
             {
                 Message = "Fatura başarılı bir şekilde kaydedildi",
 
@@ -70,9 +72,11 @@ namespace Business.Concrete
 
         public CommandResponse Update(UpdateUtilityBillRequest request)
         {
+            var validator = new UpdateUtilityBillRequestValidator();
+            validator.Validate(request).ThrowIfException();
             // Fatura no eklemedim ama fatura no olması lazım uniq bir şekilde
             // Böyle bir fatura var mı kontrolü daire boş olamaz böyle bir daire var mı kontrolü
-            var isExistEntity = _utilityBillRepository.Get(x => x.Id == request.Id);
+            var isExistEntity = _utilityBillRepository.Get(x => x.UtilityBillNo == request.UtilityBillNo);
             if (isExistEntity == null)
             {
                 return new CommandResponse()
@@ -87,7 +91,7 @@ namespace Business.Concrete
 
             return new CommandResponse()  // response çıktı
             {
-                Message = "Fatura başarılı bir şekilde kaydedildi",
+                Message = $"{request.UtilityBillNo} numaralı fatura başarılı bir şekilde Güncellendi",
                 Status = true
             };
         }
@@ -113,5 +117,9 @@ namespace Business.Concrete
             };
         }
 
+        //public CommandResponse PostInvoiceToAllFlats(CreateUtilityBillRequest request)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }

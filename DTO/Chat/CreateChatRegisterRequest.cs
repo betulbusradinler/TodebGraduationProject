@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DTO.Chat
+﻿namespace DTO.Chat
 {
     public class CreateChatRegisterRequest
     {
@@ -8,6 +6,5 @@ namespace DTO.Chat
         public string Content { get; set; }
         public string ReciverMail { get; set; }
         public string SenderMail { get; set; }
-        public DateTime Created { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Business.Configuration.Validator.FluentValidation.UserValidation
     {
         public UpdateUserRequestValidator()
         {
-            // Var olan bir kullanıcıyı güncellemeden önce yapılması gereken validationlar
+            // Var olan bir kullanıcıyı güncellemeden önce yapılması gereken validasyonlar
             RuleFor(x => x.Id).GreaterThan(0);
             RuleFor(x => x.No).NotEmpty();
             RuleFor(x => x.Surname).NotEmpty();
