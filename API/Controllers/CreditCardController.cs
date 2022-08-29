@@ -9,7 +9,7 @@ using API.Configuration.Filters.Logs;
 
 namespace API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CreditCardController : ControllerBase
@@ -22,13 +22,16 @@ namespace API.Controllers
         }
 
         [HttpGet("GetAll")]
+        [Permission(Permission.CreditCardGetAll)]
         public IActionResult GetAll()
         {
             var data = _service.GetAll();
             return Ok(data);
         }
 
+      
         [HttpGet("GetById")]
+        [Permission(Permission.CreditCardGetById)]
         public CreditCard GetById(string id)
         {
 
@@ -37,32 +40,29 @@ namespace API.Controllers
 
 
         [HttpPost]
-        [LogFilter]
         [Permission(Permission.CreditCardPost)]
+        [LogFilter]
         public IActionResult Post(CreditCard request)
         {
             _service.Add(request);
             return Ok();
         }
 
+
         [HttpPut]
+        [Permission(Permission.CreditCardGetPut)]
         public IActionResult Put(CreditCard request)
         {
             _service.Update(request);
             return Ok();
         }
 
+       
         [HttpDelete]
+        [Permission(Permission.CreditCardDelete)]
         public IActionResult Delete(ObjectId id)
         {
             _service.Delete(id);
-            return Ok();
-        }
-
-        [HttpGet("TestExceptionFilter")]
-        public IActionResult TestExceptionFilter()
-        {
-            _service.TestExceptionFilter();
             return Ok();
         }
 

@@ -6,6 +6,10 @@ namespace Business.Configuration.Validator.FluentValidation.FlatValidation
     {
         public CreateFlatRequestValidator()
         {
+            RuleFor(x => x.No).NotEmpty().WithMessage("Lütfen Daire numarasını girin");
+            RuleFor(x => x.FloorNo).NotEmpty().WithMessage("Lütfen Kat numarasını girin");
+            RuleFor(x => x.Block).NotEmpty().WithMessage("Lütfen hangi blok olduğunu girin");
+            RuleFor(x => x.State).NotEmpty().WithMessage("Lütfen dairenin dolu mu boş mu olduğunu giriniz");
         }
     }
 }

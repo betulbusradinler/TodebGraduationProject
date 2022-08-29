@@ -41,9 +41,5 @@ namespace Bussines.Concrete
             return _repository.GetAll();
         }
 
-        public void TestExceptionFilter()
-        {
-            throw new Exception("Test");
-        }
     }
 }

@@ -11,10 +11,36 @@ namespace Models.Entities
         CreditCardGetPut,
         CreditCardDelete,
 
-        CustomerGetAll,
-        CustomerGetAllForReport,
-        CustomerPost,
-        CustomerGetPut,
-        CustomerDelete,
+        ChatGetAll,
+        ChatPost,
+        ChatGetPut,
+        ChatDelete,
+
+        OneTimeBillingForAllFlatsControllerPost,
+
+        FlatGetAll,
+        FlatPost,
+        FlatGetPut,
+        FlatDelete,
+        FlatGetPatch,
+
+        UserGetAll,
+        UserPost,
+        UserGetPut,
+        UserDelete,
+
+        UtilityBillGetAll,
+        UtilityBillPost,
+        UtilityBillPut,
+        UtilityBillDelete,
+
+        UtilityBillTypeControllerGetAll,
+        UtilityBillTypeControllerPost,
+        UtilityBillTypeControllerPut,
+        UtilityBillTypeControllerDelete,
+
+        UserPasswordPatch
+
+
     }
 }

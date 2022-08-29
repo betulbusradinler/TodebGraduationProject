@@ -1,3 +1,4 @@
+using API.Configuration.Filters.Exception;
 using API.Configuration.Filters.Logs;
 using Business.Abstract;
 using Business.Concrete;
@@ -12,7 +13,10 @@ using DAL.Concrete.Mongo;
 using DAL.DbContexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +25,7 @@ using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using StackExchange.Redis;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace API
@@ -160,6 +165,28 @@ namespace API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
+
+
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features.Get<IExceptionHandlerFeature>().Error;
+
+                var jsonResult = new JsonResult(
+                   new
+                   {
+                       error = exception.Message,
+                       innerException = exception.InnerException,
+                       statusCode = HttpStatusCode.InternalServerError
+                   }
+
+               );
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                await context.Response.WriteAsJsonAsync(jsonResult);
+            }));
+
+
+
+
 
             app.UseRouting();
             app.UseAuthentication();

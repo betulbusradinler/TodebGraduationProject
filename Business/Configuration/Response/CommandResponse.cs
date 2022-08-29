@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Business.Configuration.Response
+﻿namespace Business.Configuration.Response
 {
     public class CommandResponse
     {

@@ -52,3 +52,5 @@ C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\TodebBitirmeProje - Kopya\DA
 C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\TodebBitirmeProje - Kopya\DAL\obj\Debug\net5.0\DAL.pdb
 C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\TodebBitirmeProje - Kopya\DAL\obj\Debug\net5.0\DAL.genruntimeconfig.cache
 C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\TodebBitirmeProje - Kopya\DAL\obj\Debug\net5.0\ref\DAL.dll
+C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\TodebBitirmeProje - Kopya\DAL\bin\Debug\net5.0\DTO.dll
+C:\Users\dinle\OneDrive - erciyes.edu.tr\Masaüstü\TodebBitirmeProje - Kopya\DAL\bin\Debug\net5.0\DTO.pdb

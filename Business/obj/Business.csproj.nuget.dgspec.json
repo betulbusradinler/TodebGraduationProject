@@ -114,6 +114,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\DTO\\DTO.csproj": {
+                "projectPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\DTO\\DTO.csproj"
+              },
               "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\Models.csproj": {
                 "projectPath": "C:\\Users\\dinle\\OneDrive - erciyes.edu.tr\\Masaüstü\\TodebBitirmeProje - Kopya\\Models\\Models.csproj"
               }

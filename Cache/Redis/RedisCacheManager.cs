@@ -1,6 +1,5 @@
 ﻿using ServiceStack.Redis;
 using System;
-using Microsoft.Extensions.Configuration;
 
 
 namespace Cache.Redis

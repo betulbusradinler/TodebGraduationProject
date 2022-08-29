@@ -1,9 +1,13 @@
-﻿using Business.Abstract;
+﻿using API.Configuration.Filters.Auth;
+using Business.Abstract;
 using DTO.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.Entities;
 
 namespace API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -12,12 +16,15 @@ namespace API.Controllers
         
         private readonly IUserService _userService;
 
+
         public UserController(IUserService service)
         {
             _userService = service;
         }
 
+
         [HttpPost("Register")]
+        [Permission(Permission.UserPost)]
         public IActionResult Post(CreateUserRegisterRequest request)
         {
             var response = _userService.Register(request);
@@ -26,6 +33,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Permission(Permission.UserGetAll)]
         public IActionResult GetAll()
         {
             var data = _userService.GetAll();
@@ -33,6 +41,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
+        [Permission(Permission.UserGetPut)]
         public IActionResult Put(UpdateUserRequest request)
         {
             var response = _userService.Update(request);
@@ -41,18 +50,19 @@ namespace API.Controllers
 
 
         [HttpDelete]
+        [Permission(Permission.UserDelete)]
         public IActionResult Delete(DeleteUserRequest request)
         {
             var response = _userService.Delete(request);
             return Ok(response);
         }
 
-        [HttpPatch]
-        public IActionResult Get()
-        {
-            var data = _userService.GetAll();
-            return Ok(data);
-        }
+        //[HttpPatch]
+        //public IActionResult Get()
+        //{
+        //    var data = _userService.GetAll();
+        //    return Ok(data);
+        //}
 
     }
 }

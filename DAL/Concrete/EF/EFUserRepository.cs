@@ -1,6 +1,7 @@
 ﻿using DAL.Abstract;
 using DAL.DbContexts;
 using DAL.EFBase;
+using DTO.User;
 using Microsoft.EntityFrameworkCore;
 using Models.Entities;
 using System.Linq;
@@ -22,5 +23,7 @@ namespace DAL.Concrete.EF
                .Include(x => x.Password)
                .FirstOrDefault(x => x.Email == email);
         }
+
+        
     }
 }

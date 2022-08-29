@@ -1,4 +1,5 @@
 ﻿using DAL.EFBase;
+using DTO.User;
 using Models.Entities;
 
 namespace DAL.Abstract
