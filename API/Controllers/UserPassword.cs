@@ -7,7 +7,7 @@ using Models.Entities;
 
 namespace API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserPassword : ControllerBase
@@ -24,7 +24,7 @@ namespace API.Controllers
 
      
         [HttpPatch]
-        [Permission(Permission.UserPasswordPatch)]
+        ///[Permission(Permission.UserPasswordPatch)]
         public IActionResult Patch(UpdateUserPasswordRegisterRequest request)
         {
             var data = _userPassService.UpdateUserPassword(request);

@@ -49,6 +49,10 @@ namespace API
             // User DI
             services.AddScoped<IUserRepository, EFUserRepository>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IUserPasswordRepository, EFUserPasswordRepository>();
+            services.AddScoped<IUserPasswordService, UserPasswordService>();
+
             services.AddScoped<IAuthService, AuthService>();
             // Flat DI
             services.AddScoped<IFlatService, FlatService>();
